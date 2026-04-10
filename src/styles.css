@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Scroll suave para enlaces del nav */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Para que el scroll no quede tapado por el header sticky */
+section[id] {
+  scroll-margin-top: 140px;
+}
+
+/* Animación reveal al entrar en pantalla */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal--in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
+.brand-marquee-full {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: 1.5rem;
+}
+
+.brand-marquee-track-wrap {
+  display: flex;
+  min-width: 100vw;
+  width: max-content;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5rem;
+  flex-shrink: 0;
+  padding-inline: 2rem;
+  animation: brand-marquee 7s linear infinite;
+}
+
+.brand-marquee-item {
+  flex: 0 0 auto;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition: filter 250ms ease, opacity 250ms ease, transform 250ms ease;
+}
+
+.brand-marquee-item:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+@keyframes brand-marquee {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .brand-marquee-track-wrap {
+    animation: none;
+  }
+}
