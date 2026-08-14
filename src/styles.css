@@ -2,21 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Scroll suave para enlaces del nav */
 html {
   scroll-behavior: smooth;
 }
 
-/* Para que el scroll no quede tapado por el header sticky */
+body {
+  font-family: "Manrope", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: "Outfit", "Manrope", system-ui, sans-serif;
+}
+
+/* Para que el scroll no quede tapado por el header fixed */
 section[id] {
-  scroll-margin-top: 140px;
+  scroll-margin-top: 110px;
 }
 
 /* Animación reveal al entrar en pantalla */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transform: translateY(22px);
+  transition: opacity 750ms ease, transform 750ms ease;
   will-change: opacity, transform;
 }
 
@@ -48,7 +55,7 @@ section[id] {
   gap: 5rem;
   flex-shrink: 0;
   padding-inline: 2rem;
-  animation: brand-marquee 7s linear infinite;
+  animation: brand-marquee 18s linear infinite;
 }
 
 .brand-marquee-item {

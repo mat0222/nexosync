@@ -5,10 +5,13 @@ module.exports = {
     extend: {
       colors: {
         nexoblue: "#0b79d0",
-        nexogreen: "#3bbf7a"
-      }
-    }
+        nexogreen: "#3bbf7a",
+      },
+      fontFamily: {
+        sans: ["Manrope", "system-ui", "sans-serif"],
+        display: ["Outfit", "Manrope", "system-ui", "sans-serif"],
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
-

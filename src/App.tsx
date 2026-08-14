@@ -1,13 +1,16 @@
 import { useEffect } from "react";
+import { ScrollProgressBar } from "./components/ScrollProgressBar";
 import { Header } from "./components/Header";
 import { HeroSection } from "./components/HeroSection";
+import { AboutSection } from "./components/AboutSection";
+import { ProblemsSection } from "./components/ProblemsSection";
 import { ServicesSection } from "./components/ServicesSection";
+import { ServicesOverviewSection } from "./components/ServicesOverviewSection";
+import { IncludesSection } from "./components/IncludesSection";
+import { StepsSection } from "./components/StepsSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
-import { AboutSection } from "./components/AboutSection";
-import { ServicesOverviewSection } from "./components/ServicesOverviewSection";
-import { StepsSection } from "./components/StepsSection";
 
 export default function App() {
   useEffect(() => {
@@ -16,10 +19,9 @@ export default function App() {
 
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("section[id]")
-    );
+    ).filter((section) => section.id !== "inicio");
 
     if (reduceMotion) {
-      // Evita animaciones si el usuario pidió menos movimiento
       sections.forEach((section) => section.classList.add("reveal--in"));
       return;
     }
@@ -38,8 +40,8 @@ export default function App() {
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.1,
+        rootMargin: "0px 0px -8% 0px",
       }
     );
 
@@ -49,28 +51,19 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 text-[15px] md:text-[16px]">
+    <div className="min-h-screen bg-white font-sans text-slate-900 text-[15px] antialiased md:text-[16px]">
+      <ScrollProgressBar />
       <Header />
-      <main className="pb-16">
+      <main>
         <HeroSection />
-        <section className="mt-16 w-full px-6 md:px-12 lg:px-20">
-          <AboutSection />
-        </section>
-        <section className="mt-16 w-full px-6 md:px-12 lg:px-20">
-          <ServicesSection />
-        </section>
-        <section className="mt-20 w-full px-6 md:px-12 lg:px-20">
-          <ServicesOverviewSection />
-        </section>
-        <section className="mt-20 w-full px-6 md:px-12 lg:px-20">
-          <StepsSection />
-        </section>
-        <section className="mt-20 w-full px-6 md:px-12 lg:px-20">
-          <TestimonialsSection />
-        </section>
-        <section className="mt-20 w-full px-6 md:px-12 lg:px-20">
-          <ContactSection />
-        </section>
+        <AboutSection />
+        <ProblemsSection />
+        <ServicesSection />
+        <ServicesOverviewSection />
+        <IncludesSection />
+        <StepsSection />
+        <TestimonialsSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import { MapPin, Mail, MessageCircle } from "lucide-react";
 
-/** Etiquetas legibles para el mensaje de WhatsApp */
 const PROJECT_TYPE_LABELS: Record<string, string> = {
   landing: "Página publicitaria",
   sitio: "Sitio institucional",
@@ -9,11 +8,6 @@ const PROJECT_TYPE_LABELS: Record<string, string> = {
   otro: "Otro",
 };
 
-/**
- * Número de WhatsApp solo con dígitos: código país + código de área + número (sin +, sin 0 inicial).
- * Ejemplo Argentina celular: 54 9 351 1234567 → 5493511234567
- * Podés definir VITE_WHATSAPP_NUMBER en un archivo `.env` (Vite) y se usará con prioridad.
- */
 function getWhatsAppDigits(): string {
   const fromEnv = import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined;
   const raw = fromEnv?.trim() || "5493573414204";
@@ -81,30 +75,56 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="bg-slate-50 py-20 md:py-28">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 md:flex-row md:items-start lg:px-12">
-        
-        {/* Formulario a la izquierda */}
-        <form
-          className="w-full space-y-6 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/40 md:basis-3/5 lg:p-12"
-          onSubmit={handleSubmit}
-        >
-          <div className="space-y-5">
+    <section id="contacto" className="relative overflow-hidden py-20 md:py-28">
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 80% 20%, rgb(14 165 233 / 0.14), transparent 55%), linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
+        <div className="mb-12 max-w-2xl space-y-4">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-sky-600">
+            Empecemos
+          </p>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
+            Tu negocio merece una web que funcione.
+          </h2>
+          <p className="text-base leading-relaxed text-slate-600 md:text-lg">
+            Contanos qué necesitás y te orientamos para definir una página clara,
+            profesional y preparada para crecer.
+          </p>
+        </div>
+
+        <div className="flex w-full flex-col gap-10 md:flex-row md:items-start">
+          <form
+            className="w-full space-y-5 border border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/40 md:basis-3/5 lg:p-10"
+            onSubmit={handleSubmit}
+          >
             <div className="space-y-2">
-              <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              <label
+                htmlFor="name"
+                className="text-xs font-bold uppercase tracking-widest text-slate-500"
+              >
                 Nombre
               </label>
               <input
                 id="name"
                 name="name"
                 className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base text-slate-900 transition-colors focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-500/10"
-                placeholder="¿Cómo te llamas?"
+                placeholder="¿Cómo te llamás?"
                 required
               />
             </div>
-            
+
             <div className="space-y-2">
-              <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              <label
+                htmlFor="email"
+                className="text-xs font-bold uppercase tracking-widest text-slate-500"
+              >
                 Email
               </label>
               <input
@@ -118,7 +138,10 @@ export const ContactSection: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="projectType" className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              <label
+                htmlFor="projectType"
+                className="text-xs font-bold uppercase tracking-widest text-slate-500"
+              >
                 Tipo de proyecto
               </label>
               <select
@@ -128,96 +151,110 @@ export const ContactSection: React.FC = () => {
                 required
                 className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base text-slate-900 transition-colors focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-500/10"
               >
-                <option value="" disabled>Selecciona una opción</option>
-                <option value="landing">Pagina Publicitaria</option>
+                <option value="" disabled>
+                  Seleccioná una opción
+                </option>
+                <option value="landing">Página publicitaria</option>
                 <option value="sitio">Sitio institucional</option>
-                <option value="modernizacion">Modernización de mi Local</option>
+                <option value="modernizacion">Modernización de mi local</option>
                 <option value="otro">Otro</option>
               </select>
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                Cuéntame más
+              <label
+                htmlFor="message"
+                className="text-xs font-bold uppercase tracking-widest text-slate-500"
+              >
+                Contame más
               </label>
               <textarea
                 id="message"
                 name="message"
                 rows={4}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base text-slate-900 resize-none transition-colors focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-500/10"
-                placeholder="Objetivo del sitio, público al que apuntas, plazos..."
+                className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-base text-slate-900 transition-colors focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-500/10"
+                placeholder="Objetivo del sitio, público, plazos..."
               />
             </div>
-          </div>
 
-          <button
-            type="submit"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-4 text-sm font-bold tracking-wide text-white transition-all hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30"
-          >
-            <MessageCircle size={20} aria-hidden />
-            Enviar por WhatsApp
-          </button>
-          <p className="text-center text-xs text-slate-500">
-            Se abre WhatsApp con tu mensaje listo para enviar. Podés editarlo antes de mandarlo.
-          </p>
-        </form>
-
-        {/* Datos y razones a la derecha */}
-        <div className="w-full space-y-10 md:basis-2/5 md:pt-8">
-          <div className="space-y-4">
-            <h2 className="text-3xl font-extrabold text-slate-900">
-              Conversemos sobre tu proyecto
-            </h2>
-            <p className="text-lg leading-relaxed text-slate-600">
-              Cuéntame qué necesitás lograr con tu sitio y coordinamos una breve
-              llamada para ver si hacemos buen equipo.
+            <button
+              type="submit"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-4 text-sm font-bold tracking-wide text-white transition-all hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30"
+            >
+              <MessageCircle size={20} aria-hidden />
+              Enviar por WhatsApp
+            </button>
+            <p className="text-center text-xs text-slate-500">
+              Se abre WhatsApp con tu mensaje listo. Podés editarlo antes de
+              mandarlo.
             </p>
-          </div>
+          </form>
 
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 text-slate-600">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm border border-slate-100">
-                <MapPin size={20} className="text-sky-600" />
+          <div className="w-full space-y-8 md:basis-2/5 md:pt-2">
+            <div className="space-y-4">
+              <a
+                href="https://wa.me/5493573414204"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky-600 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-lg shadow-sky-500/30 transition-colors hover:bg-sky-700"
+              >
+                <MessageCircle size={18} aria-hidden />
+                Hablemos por WhatsApp
+              </a>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 text-slate-600">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+                  <MapPin size={20} className="text-sky-600" aria-hidden />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Ubicación
+                  </p>
+                  <p className="font-medium text-slate-900">
+                    Villa del Rosario · Córdoba
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Ubicación</p>
-                <p className="font-medium text-slate-900">Villa del Rosario · Córdoba</p>
+
+              <div className="flex items-center gap-4 text-slate-600">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+                  <Mail size={20} className="text-sky-600" aria-hidden />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Email directo
+                  </p>
+                  <p className="font-medium text-slate-900">
+                    nexosync.dev@gmail.com
+                  </p>
+                </div>
               </div>
             </div>
-            
-            <div className="flex items-center gap-4 text-slate-600">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm border border-slate-100">
-                <Mail size={20} className="text-sky-600" />
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Email directo</p>
-                <p className="font-medium text-slate-900">nexosync.dev@gmail.com</p>
-              </div>
-            </div>
-          </div>
 
-          <div className="rounded-2xl bg-sky-50 p-6 border border-sky-100">
-            <p className="font-bold text-sky-900 mb-4 flex items-center gap-2">
-              <MessageCircle size={20} />
-              ¿Por qué trabajar con NexoSync?
-            </p>
-            <ul className="space-y-3 text-sm text-sky-800">
-              <li className="flex items-start gap-2">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" />
-                <span>Te ayudo a bajar a tierra tu idea en un plan claro.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" />
-                <span>Comunicación cercana, sin tecnicismos innecesarios.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" />
-                <span>Sitio moderno, fácil de mantener y orientado al negocio.</span>
-              </li>
-            </ul>
+            <div className="rounded-2xl border border-sky-100 bg-sky-50/80 p-6">
+              <p className="mb-4 flex items-center gap-2 font-bold text-sky-900">
+                <MessageCircle size={20} aria-hidden />
+                ¿Por qué NexoSync?
+              </p>
+              <ul className="space-y-3 text-sm text-sky-900/80">
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" />
+                  <span>Bajamos tu idea a un plan claro y accionable.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" />
+                  <span>Comunicación cercana, sin tecnicismos de más.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500" />
+                  <span>Sitio moderno, mantenible y orientado al negocio.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-
       </div>
     </section>
   );
