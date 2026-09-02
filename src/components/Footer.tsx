@@ -1,4 +1,5 @@
 import React from "react";
+import { CONTACT_EMAIL, INSTAGRAM_URL, TIKTOK_URL } from "../contacts";
 
 export const Footer: React.FC = () => {
   return (
@@ -84,11 +85,28 @@ export const Footer: React.FC = () => {
           <ul className="mt-4 space-y-2 text-sm">
             <li>Villa del Rosario · Córdoba</li>
             <li>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white">
+                {CONTACT_EMAIL}
+              </a>
+            </li>
+            <li>
               <a
-                href="mailto:nexosync.dev@gmail.com"
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-white"
               >
-                nexosync.dev@gmail.com
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+              >
+                TikTok
               </a>
             </li>
           </ul>

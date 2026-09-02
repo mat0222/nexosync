@@ -1,5 +1,7 @@
 import React from "react";
-import { MapPin, Mail, MessageCircle } from "lucide-react";
+import { MapPin, Mail, MessageCircle, Instagram } from "lucide-react";
+import { CONTACT_EMAIL, INSTAGRAM_URL, TIKTOK_URL } from "../contacts";
+import { TikTokIcon } from "./TikTokIcon";
 
 const PROJECT_TYPE_LABELS: Record<string, string> = {
   landing: "Página publicitaria",
@@ -226,11 +228,48 @@ export const ContactSection: React.FC = () => {
                   <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Email directo
                   </p>
-                  <p className="font-medium text-slate-900">
-                    nexosync.dev@gmail.com
-                  </p>
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="font-medium text-slate-900 hover:text-sky-700"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>
                 </div>
               </div>
+
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 text-slate-600 transition-colors hover:text-sky-700"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+                  <Instagram size={20} className="text-sky-600" aria-hidden />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Instagram
+                  </p>
+                  <p className="font-medium text-slate-900">@nexo.sync</p>
+                </div>
+              </a>
+
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 text-slate-600 transition-colors hover:text-sky-700"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm">
+                  <TikTokIcon size={20} className="text-sky-600" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    TikTok
+                  </p>
+                  <p className="font-medium text-slate-900">@mateo.nexosync</p>
+                </div>
+              </a>
             </div>
 
             <div className="rounded-2xl border border-sky-100 bg-sky-50/80 p-6">

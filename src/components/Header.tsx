@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { Linkedin, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
+import { INSTAGRAM_URL, TIKTOK_URL } from "../contacts";
+import { TikTokIcon } from "./TikTokIcon";
 
 type NavLink = {
   id: string;
@@ -16,7 +18,6 @@ const navLinks: NavLink[] = [
 ];
 
 const WHATSAPP_CHAT_URL = "https://wa.me/5493573414204";
-const LINKEDIN_URL = "https://www.linkedin.com";
 
 export const Header = () => {
   const [activeId, setActiveId] = useState<string>("inicio");
@@ -143,13 +144,22 @@ export const Header = () => {
             {!scrolled ? (
               <div className="hidden items-center gap-3 sm:flex">
                 <a
-                  href={LINKEDIN_URL}
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 text-white transition-colors hover:bg-sky-700"
-                  aria-label="LinkedIn"
+                  aria-label="Instagram"
                 >
-                  <Linkedin size={16} strokeWidth={2.25} aria-hidden />
+                  <Instagram size={16} strokeWidth={2.25} aria-hidden />
+                </a>
+                <a
+                  href={TIKTOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 text-white transition-colors hover:bg-sky-700"
+                  aria-label="TikTok"
+                >
+                  <TikTokIcon size={16} />
                 </a>
                 <a
                   href={WHATSAPP_CHAT_URL}
@@ -270,13 +280,22 @@ export const Header = () => {
               </a>
               <div className="mt-3 flex items-center gap-3 border-t border-white/10 px-2 pt-3">
                 <a
-                  href={LINKEDIN_URL}
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-sky-600"
-                  aria-label="LinkedIn"
+                  aria-label="Instagram"
                 >
-                  <Linkedin size={16} strokeWidth={2.25} aria-hidden />
+                  <Instagram size={16} strokeWidth={2.25} aria-hidden />
+                </a>
+                <a
+                  href={TIKTOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-sky-600"
+                  aria-label="TikTok"
+                >
+                  <TikTokIcon size={16} />
                 </a>
                 <a
                   href={WHATSAPP_CHAT_URL}
