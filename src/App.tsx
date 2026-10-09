@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ScrollProgressBar } from "./components/ScrollProgressBar";
 import { Header } from "./components/Header";
 import { HeroSection } from "./components/HeroSection";
@@ -11,9 +11,40 @@ import { StepsSection } from "./components/StepsSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
+import { LegalPage, legalDocumentTitle } from "./components/LegalPage";
+import { legalIdFromHash, type LegalId } from "./legalRoutes";
+
+const HOME_TITLE = "NexoSync — Desarrollo Web Profesional";
 
 export default function App() {
+  const [legalId, setLegalId] = useState<LegalId | null>(() =>
+    legalIdFromHash(window.location.hash)
+  );
+
   useEffect(() => {
+    const sync = () => setLegalId(legalIdFromHash(window.location.hash));
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
+
+  useEffect(() => {
+    document.title = legalId ? legalDocumentTitle(legalId) : HOME_TITLE;
+    if (legalId) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const id = window.location.hash.replace(/^#/, "");
+    if (!id || id === "inicio") {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    document.getElementById(id)?.scrollIntoView();
+  }, [legalId]);
+
+  useEffect(() => {
+    if (legalId) return;
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")
       .matches;
 
@@ -48,22 +79,28 @@ export default function App() {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, []);
+  }, [legalId]);
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 text-[15px] antialiased md:text-[16px]">
       <ScrollProgressBar />
       <Header />
       <main>
-        <HeroSection />
-        <AboutSection />
-        <ProblemsSection />
-        <ServicesSection />
-        <ServicesOverviewSection />
-        <IncludesSection />
-        <StepsSection />
-        <TestimonialsSection />
-        <ContactSection />
+        {legalId ? (
+          <LegalPage id={legalId} />
+        ) : (
+          <>
+            <HeroSection />
+            <AboutSection />
+            <ProblemsSection />
+            <ServicesSection />
+            <ServicesOverviewSection />
+            <IncludesSection />
+            <StepsSection />
+            <TestimonialsSection />
+            <ContactSection />
+          </>
+        )}
       </main>
       <Footer />
     </div>

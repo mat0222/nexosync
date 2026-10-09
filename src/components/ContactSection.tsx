@@ -179,6 +179,46 @@ export const ContactSection: React.FC = () => {
               />
             </div>
 
+            <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+              <input
+                id="privacyAccepted"
+                name="privacyAccepted"
+                type="checkbox"
+                required
+                className="mt-1 h-4 w-4 shrink-0 accent-sky-600"
+                onInvalid={(event) => {
+                  event.currentTarget.setCustomValidity(
+                    "Aceptá la política de privacidad para enviar la consulta."
+                  );
+                }}
+                onChange={(event) => {
+                  event.currentTarget.setCustomValidity("");
+                }}
+              />
+              <label
+                htmlFor="privacyAccepted"
+                className="text-sm leading-relaxed text-slate-600"
+              >
+                Acepto que NexoSync use estos datos para responder mi consulta,
+                incluida su transmisión por WhatsApp, según la{" "}
+                <a
+                  href="#privacidad"
+                  className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-2 hover:text-sky-800"
+                >
+                  Política de Privacidad
+                </a>
+                . Este envío no es un contrato: el alcance y el precio se
+                confirman en una propuesta escrita. Podés leer los{" "}
+                <a
+                  href="#terminos"
+                  className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-2 hover:text-sky-800"
+                >
+                  Términos y condiciones
+                </a>
+                .
+              </label>
+            </div>
+
             <button
               type="submit"
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-4 text-sm font-bold tracking-wide text-white transition-all hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-600/30"
@@ -188,7 +228,7 @@ export const ContactSection: React.FC = () => {
             </button>
             <p className="text-center text-xs text-slate-500">
               Se abre WhatsApp con tu mensaje listo. Podés editarlo antes de
-              mandarlo.
+              mandarlo. NexoSync no guarda este formulario en un servidor propio.
             </p>
           </form>
 

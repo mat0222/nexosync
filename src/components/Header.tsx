@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Instagram, MessageCircle } from "lucide-react";
 import { INSTAGRAM_URL, TIKTOK_URL } from "../contacts";
+import { legalIdFromHash } from "../legalRoutes";
 import { TikTokIcon } from "./TikTokIcon";
 
 type NavLink = {
@@ -23,6 +24,7 @@ export const Header = () => {
   const [activeId, setActiveId] = useState<string>("inicio");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hash, setHash] = useState(() => window.location.hash);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -43,6 +45,12 @@ export const Header = () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
 
   useEffect(() => {
     const sections = navLinks
@@ -71,7 +79,9 @@ export const Header = () => {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [hash]);
+
+  const onLegalPage = legalIdFromHash(hash) !== null;
 
   const goTo = (id: string) => {
     setActiveId(id);
@@ -119,7 +129,7 @@ export const Header = () => {
               aria-label="Navegación principal"
             >
               {navLinks.map((link) => {
-                const isActive = activeId === link.id;
+                const isActive = !onLegalPage && activeId === link.id;
                 return (
                   <a
                     key={link.id}
@@ -253,7 +263,7 @@ export const Header = () => {
           >
             <nav className="flex flex-col p-3" aria-label="Menú">
               {navLinks.map((link) => {
-                const isActive = activeId === link.id;
+                const isActive = !onLegalPage && activeId === link.id;
                 return (
                   <a
                     key={link.id}

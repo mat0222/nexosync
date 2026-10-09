@@ -114,9 +114,19 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="border-t border-slate-800">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-5 text-xs text-slate-500 sm:flex-row lg:px-12">
-          <p>© {new Date().getFullYear()} NexoSync · Todos los derechos reservados.</p>
-          <p>Desde Córdoba para tu negocio.</p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-xs text-slate-500 sm:flex-row lg:px-12">
+          <p>© {new Date().getFullYear()} NexoSync · Villa del Rosario, Córdoba, Argentina.</p>
+          <nav aria-label="Documentos legales" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <a href="#terminos" className="hover:text-white">
+              Términos y condiciones
+            </a>
+            <a href="#privacidad" className="hover:text-white">
+              Privacidad
+            </a>
+            <a href="#cookies" className="hover:text-white">
+              Cookies
+            </a>
+          </nav>
         </div>
       </div>
     </footer>

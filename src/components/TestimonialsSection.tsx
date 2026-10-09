@@ -4,6 +4,17 @@ const brands = [
   {
     name: "FobiBike",
     logo: "/fobibike.png",
+    className: "h-[6.4rem] md:h-[7.7rem]",
+  },
+  {
+    name: "Wicel",
+    logo: "/wicel.png",
+    className: "h-20 md:h-24",
+  },
+  {
+    name: "DEA Bike",
+    logo: "/deabike.png",
+    className: "h-20 md:h-24",
   },
 ];
 
@@ -32,7 +43,7 @@ export const TestimonialsSection: React.FC = () => {
                 key={`${brand.name}-${index}`}
                 src={brand.logo}
                 alt={`Logo de ${brand.name}`}
-                className="brand-marquee-item h-20 w-auto object-contain md:h-24"
+                className={`brand-marquee-item w-auto object-contain ${brand.className}`}
               />
             ))}
           </div>
@@ -42,7 +53,7 @@ export const TestimonialsSection: React.FC = () => {
                 key={`${brand.name}-clone-${index}`}
                 src={brand.logo}
                 alt=""
-                className="brand-marquee-item h-20 w-auto object-contain md:h-24"
+                className={`brand-marquee-item w-auto object-contain ${brand.className}`}
               />
             ))}
           </div>
