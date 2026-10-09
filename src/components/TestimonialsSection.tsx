@@ -8,7 +8,7 @@ const brands = [
   },
   {
     name: "Wicel",
-    logo: "/wicel.png",
+    logo: "/wicel-logo.png",
     className: "h-20 md:h-24",
   },
   {
